@@ -22,16 +22,16 @@ public class Challenge implements Serializable{
     private String image;
     private String sound;
     private String video;
-    private long author;
+    private User user;
     private Context context;
     
-    public Challenge(long id, String word, String image, String sound, String video, long author, Context context) {
+    public Challenge(long id, String word, String image, String sound, String video, User user, Context context) {
     	this.id = id;
     	this.word = word;
     	this.image = image;
     	this.sound = sound;
     	this.video = video;
-    	this.author = author;
+    	this.user = user;
     	this.context = context;
     }
     
@@ -85,13 +85,13 @@ public class Challenge implements Serializable{
 		this.video = video;
 	}
 	
-	@Column(name = "author", nullable = false)
-	public long getAuthor() {
-		return author;
+	@ManyToOne(fetch = FetchType.EAGER)
+	public User getUser() {
+		return user;
 	}
 	
-	public void setAuthor(long author) {
-		this.author = author;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	@ManyToOne(fetch = FetchType.EAGER)

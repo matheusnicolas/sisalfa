@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,16 +26,16 @@ public class Context implements Serializable{
     private String image;
     private String sound;
     private String video;
-    private long author;
+    private User user;
     private List<Challenge> challenges;
     
-    public Context(long id, String name, String image, String sound, String video, long author, List<Challenge> challenges) {
+    public Context(long id, String name, String image, String sound, String video, User user, List<Challenge> challenges) {
     	this.id = id;
     	this.name = name;
     	this.image = image;
     	this.sound = sound;
     	this.video = video;
-    	this.author = author;
+    	this.user = user;
     	this.challenges = challenges;
     }
     
@@ -88,13 +89,13 @@ public class Context implements Serializable{
 		this.video = video;
 	}
 	
-	@Column(name = "author", nullable = false)
-	public long getAuthor() {
-		return author;
+	@ManyToOne(fetch = FetchType.EAGER)
+	public User getUser() {
+		return user;
 	}
 	
-	public void setAuthor(long author) {
-		this.author = author;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@OneToMany(mappedBy="context", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -77,7 +77,7 @@ public class User implements Serializable{
 		this.email = email;
 	}
 	
-	@Column(name = "firstName", nullable = false)
+	@Column(name = "first_name", nullable = false)
 	public String getFirstName() {
 		return firstName;
 	}
@@ -86,7 +86,7 @@ public class User implements Serializable{
 		this.firstName = firstName;
 	}
 	
-	@Column(name = "lastName", nullable = false)
+	@Column(name = "last_name", nullable = false)
 	public String getLastName() {
 		return lastName;
 	}
