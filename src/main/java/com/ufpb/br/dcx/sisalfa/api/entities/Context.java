@@ -14,103 +14,42 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 
 @Entity
 @Table(name = "context")
+@NoArgsConstructor @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Context implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private long id;
-    private String name;
-    private String image;
-    private String sound;
-    private String video;
-    private User user;
-    private List<Challenge> challenges;
-    
-    public Context(long id, String name, String image, String sound, String video, User user, List<Challenge> challenges) {
-    	this.id = id;
-    	this.name = name;
-    	this.image = image;
-    	this.sound = sound;
-    	this.video = video;
-    	this.user = user;
-    	this.challenges = challenges;
-    }
-    
-    public Context() {
-    	
-    }
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-	public long getId() {
-		return id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Getter private long id;
 	
 	@Column(name = "name", nullable = false)
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
+	@Getter @Setter private String name;
 	
 	@Column(name = "image", nullable = false)
-	public String getImage() {
-		return image;
-	}
-	
-	public void setImage(String image) {
-		this.image = image;
-	}
+	@Getter @Setter private String image;
 	
 	@Column(name = "sound", nullable = false)
-	public String getSound() {
-		return sound;
-	}
-	
-	public void setSound(String sound) {
-		this.sound = sound;
-	}
+	@Getter @Setter private String sound;
 	
 	@Column(name = "video", nullable = false)
-	public String getVideo() {
-		return video;
-	}
-	
-	public void setVideo(String video) {
-		this.video = video;
-	}
+	@Getter @Setter private String video;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	public User getUser() {
-		return user;
-	}
+	@Getter @Setter private User user;
 	
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	@OneToMany(mappedBy="context", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public List<Challenge> getChallenges() {
-		return challenges;
-	}
-
-	public void setChallenges(List<Challenge> challenges) {
-		this.challenges = challenges;
-	}
-	
-	@Override
-	public String toString() {
-		return "";
-	}
-	
+	@Getter @Setter private List<Challenge> challenges;
 	
 }

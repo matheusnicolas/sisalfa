@@ -11,101 +11,41 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
 @Table(name = "challenge")
+@NoArgsConstructor @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Challenge implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private long id;
-    private String word;
-    private String image;
-    private String sound;
-    private String video;
-    private User user;
-    private Context context;
-    
-    public Challenge(long id, String word, String image, String sound, String video, User user, Context context) {
-    	this.id = id;
-    	this.word = word;
-    	this.image = image;
-    	this.sound = sound;
-    	this.video = video;
-    	this.user = user;
-    	this.context = context;
-    }
-    
-    public Challenge() {
-    	
-    }
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-	public long getId() {
-		return id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Getter private long id;
 	
 	@Column(name = "word", nullable = false)
-	public String getWord() {
-		return word;
-	}
-	
-	public void setWord(String word) {
-		this.word = word;
-	}
+    @Getter @Setter private String word;
 	
 	@Column(name = "image", nullable = false)
-	public String getImage() {
-		return image;
-	}
-	
-	public void setImage(String image) {
-		this.image = image;
-	}
-	
-	@Column(name = "sound", nullable = false)
-	public String getSound() {
-		return sound;
-	}
-	
-	public void setSound(String sound) {
-		this.sound = sound;
-	}
-	
-	@Column(name = "video", nullable = false)
-	public String getVideo() {
-		return video;
-	}
-	
-	public void setVideo(String video) {
-		this.video = video;
-	}
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	public Context getContext() {
-		return context;
-	}
-	
-	public void setContext(Context context) {
-		this.context = context;
-	}
+    @Getter @Setter private String image;
     
-	@Override
-	public String toString() {
-		return "";
-	}
+	@Column(name = "sound", nullable = false)
+    @Getter @Setter private String sound;
+    
+	@Column(name = "video", nullable = false)
+    @Getter @Setter private String video;
+    
+	@ManyToOne(fetch = FetchType.EAGER)
+    @Getter @Setter private User user;
+    
+	@ManyToOne(fetch = FetchType.EAGER)
+    @Getter @Setter private Context context;
     
 }
